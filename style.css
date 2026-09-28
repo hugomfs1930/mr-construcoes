@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1f2821;
+    background-color: #f5f3ee;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #1f2821;
+    color: white;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: #d77a50;
+}
+
+.hero {
+    min-height: 500px;
+    padding: 110px 8%;
+    color: white;
+    background:
+        linear-gradient(rgba(20, 30, 23, 0.70), rgba(20, 30, 23, 0.70)),
+        url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1800&q=85");
+    background-size: cover;
+    background-position: center;
+}
+
+.hero h1 {
+    max-width: 750px;
+    margin: 0 0 20px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(45px, 6vw, 78px);
+    line-height: 1.05;
+}
+
+.hero p {
+    max-width: 620px;
+    font-size: 19px;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 22px;
+    background-color: #bd572e;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #a94722;
+}
+
+.section {
+    padding: 80px 8%;
+}
+
+.section-light {
+    background-color: white;
+}
+
+.section-dark {
+    background-color: #1f2821;
+    color: white;
+}
+
+.eyebrow {
+    color: #bd572e;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.section h2 {
+    margin-top: 8px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 42px;
+    line-height: 1.15;
+}
+
+.intro {
+    max-width: 700px;
+    font-size: 18px;
+}
