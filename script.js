@@ -96,31 +96,6 @@ detailsButton.addEventListener("click", () => {
     detailsPanel.setAttribute("aria-hidden", String(!isOpen));
 });
 
-const comparisonRange = document.getElementById("comparison-range");
-const comparisonBefore = document.getElementById("comparison-before-wrap");
-const comparisonHandle = document.getElementById("comparison-handle");
-const comparisonImage = document.querySelector(".comparison-before");
-
-function updateComparison(value) {
-    const percentage = Number(value);
-
-    comparisonBefore.style.width = `${percentage}%`;
-    comparisonHandle.style.left = `${percentage}%`;
-
-    if (percentage > 0) {
-        comparisonImage.style.setProperty(
-            "--comparison-image-width",
-            `${10000 / percentage}%`
-        );
-    }
-}
-
-comparisonRange.addEventListener("input", (event) => {
-    updateComparison(event.target.value);
-});
-
-updateComparison(comparisonRange.value);
-
 document.getElementById("current-year").textContent = new Date().getFullYear();
 
 showSlide(0);
