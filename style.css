@@ -496,11 +496,13 @@ button {
 }
 
 .comparison {
+    --position: 50%;
     position: relative;
     min-height: 500px;
     overflow: hidden;
     background: var(--charcoal);
     user-select: none;
+    touch-action: pan-y;
 }
 
 .comparison-after,
@@ -510,27 +512,22 @@ button {
     inset: 0;
     width: 100%;
     height: 100%;
+    pointer-events: none;
 }
 
 .comparison-after,
 .comparison-before {
     display: block;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
 }
 
 .comparison-before-wrap {
-    width: 50%;
     overflow: hidden;
-    border-right: 2px solid var(--white);
-}
-
-.comparison-before {
-    max-width: none;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    -webkit-clip-path: inset(0 calc(100% - var(--position, 50%)) 0 0);
+    clip-path: inset(0 calc(100% - var(--position, 50%)) 0 0);
 }
 
 .comparison-label {
@@ -539,11 +536,14 @@ button {
     top: 18px;
     padding: 7px 10px;
     color: var(--white);
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    pointer-events: none;
+    user-select: none;
 }
 
 .before-label {
@@ -563,24 +563,43 @@ button {
     margin: 0;
     cursor: ew-resize;
     opacity: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    pointer-events: none;
 }
 
 .comparison-handle {
     position: absolute;
     z-index: 3;
+    top: 0;
+    bottom: 0;
+    left: var(--position, 50%);
+    width: 2px;
+    background: var(--white);
+    pointer-events: none;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comparison-handle span {
+    position: absolute;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
     display: grid;
-    width: 45px;
-    height: 45px;
+    width: 44px;
+    height: 44px;
     place-items: center;
     border: 2px solid var(--white);
     border-radius: 50%;
     color: var(--white);
     background: var(--ink);
-    font-size: 17px;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
+    font-size: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+    user-select: none;
 }
 
 .location-section {

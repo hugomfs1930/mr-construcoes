@@ -96,30 +96,76 @@ detailsButton.addEventListener("click", () => {
     detailsPanel.setAttribute("aria-hidden", String(!isOpen));
 });
 
+const comparisonContainer = document.getElementById("comparison");
 const comparisonRange = document.getElementById("comparison-range");
 const comparisonBefore = document.getElementById("comparison-before-wrap");
 const comparisonHandle = document.getElementById("comparison-handle");
-const comparisonImage = document.querySelector(".comparison-before");
 
 function updateComparison(value) {
-    const percentage = Number(value);
+    const percentage = Math.max(0, Math.min(100, Number(value)));
 
-    comparisonBefore.style.width = `${percentage}%`;
-    comparisonHandle.style.left = `${percentage}%`;
+    if (comparisonContainer) {
+        comparisonContainer.style.setProperty("--position", `${percentage}%`);
+    }
 
-    if (percentage > 0) {
-        comparisonImage.style.setProperty(
-            "--comparison-image-width",
-            `${10000 / percentage}%`
-        );
+    if (comparisonBefore) {
+        comparisonBefore.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+        comparisonBefore.style.webkitClipPath = `inset(0 ${100 - percentage}% 0 0)`;
+    }
+
+    if (comparisonHandle) {
+        comparisonHandle.style.left = `${percentage}%`;
+    }
+
+    if (comparisonRange && Number(comparisonRange.value) !== Math.round(percentage)) {
+        comparisonRange.value = percentage;
     }
 }
 
-comparisonRange.addEventListener("input", (event) => {
-    updateComparison(event.target.value);
-});
+if (comparisonRange) {
+    comparisonRange.addEventListener("input", (event) => {
+        updateComparison(event.target.value);
+    });
+}
 
-updateComparison(comparisonRange.value);
+if (comparisonContainer) {
+    let isDragging = false;
+
+    const setPositionFromPointer = (e) => {
+        const rect = comparisonContainer.getBoundingClientRect();
+        if (rect.width <= 0) return;
+        const clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+        const offsetX = clientX - rect.left;
+        const percentage = Math.max(0, Math.min(100, (offsetX / rect.width) * 100));
+        updateComparison(percentage);
+    };
+
+    comparisonContainer.addEventListener("pointerdown", (e) => {
+        isDragging = true;
+        comparisonContainer.setPointerCapture(e.pointerId);
+        setPositionFromPointer(e);
+    });
+
+    comparisonContainer.addEventListener("pointermove", (e) => {
+        if (!isDragging) return;
+        setPositionFromPointer(e);
+    });
+
+    const stopDragging = (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        try {
+            comparisonContainer.releasePointerCapture(e.pointerId);
+        } catch (_) {}
+    };
+
+    comparisonContainer.addEventListener("pointerup", stopDragging);
+    comparisonContainer.addEventListener("pointercancel", stopDragging);
+}
+
+if (comparisonRange) {
+    updateComparison(comparisonRange.value || 50);
+}
 
 document.getElementById("current-year").textContent = new Date().getFullYear();
 
