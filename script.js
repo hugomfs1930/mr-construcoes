@@ -82,7 +82,10 @@ nextButton.addEventListener("click", () => {
 autoplayButton.addEventListener("click", () => {
     autoplay = !autoplay;
     autoplayButton.textContent = autoplay ? "Ⅱ" : "▶";
-    autoplayButton.setAttribute("aria-label", autoplay ? "Pausar apresentação" : "Retomar apresentação");
+    autoplayButton.setAttribute(
+        "aria-label",
+        autoplay ? "Pausar apresentação" : "Retomar apresentação"
+    );
     startAutoplay();
 });
 
@@ -96,10 +99,20 @@ detailsButton.addEventListener("click", () => {
 const comparisonRange = document.getElementById("comparison-range");
 const comparisonBefore = document.getElementById("comparison-before-wrap");
 const comparisonHandle = document.getElementById("comparison-handle");
+const comparisonImage = document.querySelector(".comparison-before");
 
 function updateComparison(value) {
-    comparisonBefore.style.width = `${value}%`;
-    comparisonHandle.style.left = `${value}%`;
+    const percentage = Number(value);
+
+    comparisonBefore.style.width = `${percentage}%`;
+    comparisonHandle.style.left = `${percentage}%`;
+
+    if (percentage > 0) {
+        comparisonImage.style.setProperty(
+            "--comparison-image-width",
+            `${10000 / percentage}%`
+        );
+    }
 }
 
 comparisonRange.addEventListener("input", (event) => {

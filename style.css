@@ -87,8 +87,6 @@ button {
     opacity: 0.65;
 }
 
-/* Hero e slider */
-
 .hero {
     position: relative;
     min-height: 100svh;
@@ -337,8 +335,6 @@ button {
     }
 }
 
-/* Apresentação */
-
 .intro-section,
 .portfolio-section,
 .services-section,
@@ -353,67 +349,4 @@ button {
 
 .intro-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.55fr);
-    gap: 9%;
-    align-items: end;
-}
-
-.intro-section h2 {
-    max-width: 800px;
-    font-size: clamp(43px, 6vw, 85px);
-}
-
-.intro-grid>div p {
-    margin: 0 0 25px;
-    color: rgba(255, 255, 255, 0.76);
-    font-size: 17px;
-}
-
-/* Portfólio */
-
-.portfolio-section {
-    background: var(--paper);
-}
-
-.section-heading {
-    display: flex;
-    justify-content: space-between;
-    gap: 60px;
-    margin-bottom: 50px;
-    align-items: end;
-}
-
-.section-heading .section-label,
-.portfolio-section .section-label,
-.services-section .section-label {
-    color: var(--muted);
-}
-
-.section-heading h2 {
-    font-size: clamp(44px, 6vw, 82px);
-}
-
-.section-heading>p {
-    max-width: 320px;
-    margin: 0 0 6px;
-    color: var(--muted);
-    font-size: 14px;
-}
-
-.project-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 0.9fr;
-    gap: 22px;
-}
-
-.project-card {
-    position: relative;
-    min-height: 550px;
-    overflow: hidden;
-    background: var(--charcoal);
-    color: var(--white);
-}
-
-.project-card-large {
-    min-height: 680px;
-}
+    grid-template-columns: minmax(0, 1.5fr)
