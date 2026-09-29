@@ -583,8 +583,6 @@ button {
     transform: translate(-50%, -50%);
 }
 
-/* Localização */
-
 .location-section {
     display: grid;
     grid-template-columns: minmax(260px, 0.75fr) minmax(360px, 1.25fr);
@@ -654,7 +652,6 @@ button {
     height: 100%;
     min-height: 510px;
     border: 0;
-    filter: grayscale(1) contrast(1.05);
 }
 
 .services-section {
