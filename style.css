@@ -70,12 +70,12 @@ button {
 
 .nav {
     display: flex;
-    gap: 26px;
+    gap: 22px;
 }
 
 .nav a {
     color: var(--white);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.05em;
     text-decoration: none;
@@ -86,8 +86,6 @@ button {
 .nav a:hover {
     opacity: 0.65;
 }
-
-/* Hero */
 
 .hero {
     position: relative;
@@ -187,6 +185,7 @@ button {
 .hero h1,
 .intro-section h2,
 .section-heading h2,
+.location-details h2,
 .services-section h2,
 .contact-section h2 {
     margin: 0;
@@ -261,6 +260,7 @@ button {
 .project-details a,
 .project-card-content a,
 .text-link,
+.map-link,
 .contact-links a {
     color: inherit;
     font-size: 13px;
@@ -271,6 +271,7 @@ button {
 .project-details a span,
 .project-card-content a span,
 .text-link span,
+.map-link span,
 .contact-links span {
     display: inline-block;
     margin-left: 4px;
@@ -280,6 +281,7 @@ button {
 .project-details a:hover span,
 .project-card-content a:hover span,
 .text-link:hover span,
+.map-link:hover span,
 .contact-links a:hover span {
     transform: translate(3px, -3px);
 }
@@ -337,10 +339,9 @@ button {
     }
 }
 
-/* Apresentação */
-
 .intro-section,
 .portfolio-section,
+.location-section,
 .services-section,
 .contact-section {
     padding: 140px 8%;
@@ -369,8 +370,6 @@ button {
     font-size: 17px;
 }
 
-/* Portfólio - dois cartões compactos e iguais */
-
 .portfolio-section {
     background: var(--paper);
 }
@@ -379,7 +378,8 @@ button {
     display: flex;
     justify-content: space-between;
     gap: 60px;
-    margin-bottom: 50px;
+    max-width: 980px;
+    margin: 0 auto 50px;
     align-items: end;
 }
 
@@ -404,12 +404,15 @@ button {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
+    max-width: 980px;
+    margin: 0 auto;
 }
 
 .project-card,
 .project-card-large {
     position: relative;
-    min-height: 400px;
+    height: 360px;
+    min-height: 0;
     overflow: hidden;
     background: var(--charcoal);
     color: var(--white);
@@ -444,7 +447,7 @@ button {
     right: 0;
     bottom: 0;
     left: 0;
-    padding: 28px;
+    padding: 25px;
 }
 
 .project-card-content p {
@@ -456,21 +459,20 @@ button {
 }
 
 .project-card-content h3 {
-    margin: 0 0 14px;
+    margin: 0 0 13px;
     font-family: "Playfair Display", Georgia, serif;
-    font-size: clamp(27px, 3vw, 38px);
+    font-size: clamp(26px, 3vw, 36px);
     font-weight: 500;
     letter-spacing: -0.04em;
 }
-
-/* Antes e depois */
 
 .before-after {
     display: grid;
     grid-template-columns: 0.52fr 1fr;
     gap: 9%;
+    max-width: 1120px;
+    margin: 110px auto 0;
     align-items: center;
-    margin-top: 110px;
 }
 
 .before-after-copy h3 {
@@ -581,7 +583,79 @@ button {
     transform: translate(-50%, -50%);
 }
 
-/* Serviços */
+/* Localização */
+
+.location-section {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.75fr) minmax(360px, 1.25fr);
+    gap: 8%;
+    align-items: stretch;
+    color: var(--white);
+    background: #1b1b1a;
+}
+
+.location-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.location-details .section-label {
+    color: var(--accent-orange);
+}
+
+.location-details h2 {
+    max-width: 520px;
+    font-size: clamp(43px, 5vw, 72px);
+}
+
+.company-info {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 24px;
+    margin: 42px 0 30px;
+}
+
+.company-info p,
+.location-details address {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 14px;
+    font-style: normal;
+    line-height: 1.65;
+}
+
+.company-info strong,
+.location-details address strong {
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.map-link {
+    align-self: flex-start;
+    margin-top: 31px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    color: var(--white);
+}
+
+.map-container {
+    min-height: 510px;
+    overflow: hidden;
+    background: #2d2d2d;
+}
+
+.map-container iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 510px;
+    border: 0;
+    filter: grayscale(1) contrast(1.05);
+}
 
 .services-section {
     color: var(--white);
@@ -638,8 +712,6 @@ button {
     font-size: 14px;
 }
 
-/* Contactos */
-
 .contact-section {
     min-height: 710px;
     display: flex;
@@ -677,8 +749,6 @@ button {
     border-bottom: 1px solid rgba(255, 255, 255, 0.55);
 }
 
-/* Rodapé */
-
 footer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -712,9 +782,7 @@ footer p:last-child {
     text-align: right;
 }
 
-/* Telemóvel */
-
-@media (max-width: 800px) {
+@media (max-width: 900px) {
     .site-header {
         padding: 20px 6%;
     }
@@ -750,6 +818,7 @@ footer p:last-child {
 
     .intro-section,
     .portfolio-section,
+    .location-section,
     .services-section,
     .contact-section {
         padding: 92px 6%;
@@ -757,7 +826,8 @@ footer p:last-child {
 
     .intro-grid,
     .section-heading,
-    .before-after {
+    .before-after,
+    .location-section {
         grid-template-columns: 1fr;
         gap: 30px;
     }
@@ -772,7 +842,7 @@ footer p:last-child {
 
     .project-card,
     .project-card-large {
-        min-height: 360px;
+        height: 330px;
     }
 
     .before-after {
@@ -780,6 +850,16 @@ footer p:last-child {
     }
 
     .comparison {
+        min-height: 400px;
+    }
+
+    .company-info {
+        grid-template-columns: 1fr 1fr;
+        margin-top: 32px;
+    }
+
+    .map-container,
+    .map-container iframe {
         min-height: 400px;
     }
 
